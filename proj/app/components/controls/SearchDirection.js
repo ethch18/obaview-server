@@ -43,14 +43,18 @@ export default class SearchDirection extends React.Component {
                 }
             }
             stopItems.push(
-                <ListGroupItem key={`${this.props.heading}-${i}`} onClick={() => this.props.updater(currId)}>
+                <ListGroupItem 
+                    key={`${this.props.heading}-${i}`} 
+                    onClick={() => this.props.updater(currId)}
+                    className="clickable"
+                >
                     {stopName}
                 </ListGroupItem>
             )
         }
         return (
             <div>
-                <div onClick={this.toggleShow} className="searchmodal-header">
+                <div onClick={this.toggleShow} className="searchmodal-header clickable">
                     {this.props.heading}
                     {this.state.show ? 
                         <span className="fa icon fa-caret-down searchmodal-caret"/> :

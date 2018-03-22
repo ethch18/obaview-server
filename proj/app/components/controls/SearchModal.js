@@ -82,7 +82,7 @@ export default class SearchModal extends React.Component {
             <div>
                 <Modal isOpen className={"show"} toggle={this.props.closer}>
                         <ModalHeader toggle={this.props.closer}>
-                            Search Results
+                            {`Search Results for \"${this.props.input}\"`}
                         </ModalHeader>
                         <ModalBody>
                             {content}
