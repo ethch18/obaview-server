@@ -1,0 +1,41 @@
+@import 'variables';
+#root {
+    .searchbar-wrap {
+        color: $tertiary-text-color;
+        background-color: $dark-primary-color;
+        width: 100%;
+    }
+
+    .searchbar-input {
+        color: $tertiary-text-color;
+        display: inline-flex;
+        background-color: $default-primary-color;
+        width: initial;
+        border: none;
+        width: calc(100% - 70px);
+    }
+
+    .searchbar-input:focus {
+        // $blue-grey, with transparency
+        box-shadow: 0 1px 1px rgba(95, 124, 138, 0.075) inset, 0 0 8px rgba(95, 124, 138, 0.6);
+    }
+
+    .searchbar-button-outer {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+    }
+
+    .searchbar-button-inner {
+        background-color: $default-primary-color;
+        color: $tertiary-text-color;
+    }
+
+    .searchbar-content {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+    }
+}
