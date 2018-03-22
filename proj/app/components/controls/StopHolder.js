@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StopView from './StopView';
-import { Col, Grid, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'reactstrap';
 
 const propTypes = {
     stopIds: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -36,11 +36,11 @@ export default class StopHolder extends React.Component {
         this.views = views;
 
         return (
-            <Grid>
+            <Container>
                 <Row>
                     {cols}
                 </Row>
-            </Grid>
+            </Container>
         );
     }
 }

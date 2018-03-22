@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, FormControl } from 'react-bootstrap';
+import { Button, Form, Input } from 'reactstrap';
 
 const propTypes = {
     searchFunction: PropTypes.func.isRequired,
@@ -9,9 +9,7 @@ const propTypes = {
 export default class SearchBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            query: '',
-        };
+        this.state = {};
         this.updateQuery = this.updateQuery.bind(this) 
     }
 
@@ -22,7 +20,7 @@ export default class SearchBar extends React.Component {
     render() {
         return (
             <div className="searchbar-wrap">
-                <FormControl
+                <Input
                     type="text"
                     placeholder="Search..."
                     onChange={this.updateQuery}
@@ -31,7 +29,11 @@ export default class SearchBar extends React.Component {
                 <div className="searchbar-button-outer searchbar-content">
                     <Button 
                         className="searchbar-button-inner icon fa fa-2x fa-search"
-                        onClick={() => this.props.searchFunction(this.state.query)}
+                        onClick={() => 
+                            {if (!!this.state.query) {
+                                this.props.searchFunction(this.state.query);
+                            }}
+                        }
                     />
                 </div>
             </div>

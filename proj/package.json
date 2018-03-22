@@ -13,7 +13,8 @@
     "axios": "^0.18.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-spinner": "^0.2.7"
+    "react-spinner": "^0.2.7",
+    "reactstrap": "^5.0.0-beta.3"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",
@@ -24,7 +25,6 @@
     "clean-css-brunch": "^2",
     "json-brunch": "^1.5.4",
     "prop-types": "^15.6.1",
-    "react-bootstrap": "^0.32.1",
     "sass-brunch": "^2.10.4",
     "uglify-js-brunch": "^2"
   }
