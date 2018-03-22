@@ -1,12 +1,27 @@
-from bottle import Bottle, route, run, template
+from bottle import Bottle, hook, request, response, route, run, template
 from constants import *
 import requests as rq
 from secret import KEY
 app = Bottle()
 
+# hacky fix for port mangling, hopefully this won't be an issue later on
+@app.hook('after_request')
+def set_cors():
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS' 
+    response.headers['Access-Control-Allow-Headers'] = 'Authorization, Origin, Accept, Content-Type, X-Requested-With'
+
+@route('/', method = 'OPTIONS')
+@route('/<path>', method = 'OPTIONS')
+def options_handler(path = None):
+    return
+
 @app.route('/hello')
 @app.route('/hello/<name>')
 def greet(name='Stranger'):
+    print("route")
+    print(request)
+    print(response)
     return template('Hello {{name}}, how are you?', name=name)
 
 def make_request(url, request_id):
