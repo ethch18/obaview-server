@@ -50,7 +50,13 @@ export default class SearchDirection extends React.Component {
         }
         return (
             <div>
-                <div onClick={this.toggleShow}>{this.props.heading}</div>
+                <div onClick={this.toggleShow} className="searchmodal-header">
+                    {this.props.heading}
+                    {this.state.show ? 
+                        <span className="fa icon fa-caret-down searchmodal-caret"/> :
+                        <span className="fa icon fa-caret-right searchmodal-caret"/>
+                    }
+                </div>
                 <Collapse isOpen={this.state.show}>
                     <ListGroup>
                         {stopItems}
