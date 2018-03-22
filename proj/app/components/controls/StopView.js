@@ -7,6 +7,8 @@ import { ENDPOINTS } from '../../util/Constants';
 
 const propTypes = {
     stopId: PropTypes.string.isRequired,
+    stopIndex: PropTypes.number.isRequired,
+    stopDeleter: PropTypes.func.isRequired,
 };
 
 export default class StopView extends React.Component {
@@ -27,7 +29,7 @@ export default class StopView extends React.Component {
     }
 
     componentWillUnmount() {
-        this.clearInterval(this.state.timer);
+        clearInterval(this.state.timer);
     }
     
     conditionalRefresh() {
@@ -120,12 +122,23 @@ export default class StopView extends React.Component {
         
         return (
             <div className="stop-wrapper">
-                <div 
-                    className={`stop-heading ${canRefresh? 'clickable' : ''}`}
-                    onClick={canRefresh ? (() => {this.conditionalRefresh()}) : () => {}}
-                >
-                    {heading}
-                    {canRefresh && <span className="fa icon fa-refresh endspan-icon" />}
+                <div className="stop-heading">
+                    <span 
+                        className={`${canRefresh? 'clickable' : ''}`}
+                        onClick={canRefresh ? (() => {this.conditionalRefresh()}) : () => {}}
+                    >
+                        {heading}
+                    </span>
+                    {canRefresh &&
+                        <span 
+                            className="fa icon fa-refresh endspan-icon clickable"
+                            onClick={this.conditionalRefresh}
+                        />
+                    }
+                    <span 
+                        className="fa icon fa-trash endspan-icon clickable"
+                        onClick={() => this.props.stopDeleter(this.props.stopIndex)}
+                    />
                 </div>
                 <div className="stop-content">{content}</div>
             </div>
