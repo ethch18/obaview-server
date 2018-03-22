@@ -57,7 +57,7 @@ export default class StopView extends React.Component {
                     const arrTime = arrEntity.toLocaleTimeString();
                     const timeDiff = Math.floor((arrEntity - new Date()) / 60000);
                     stopEntries.push(
-                        <div key={i}>
+                        <div key={`${dest}-${i}`}>
                             <div>{`${shortName} - ${dest}`}</div>
                             <div>{`${arrTime} (${timeDiff} min.)`}</div>
                         </div>);

@@ -13,11 +13,11 @@ export default class MainPage extends React.Component {
             temp: null,
             stopIds,
             stopSet,
+            stopCache: {},
         };
         this.search = this.search.bind(this);
         this.appendStop = this.appendStop.bind(this);
         this.clearModal = this.clearModal.bind(this);
-        this.updateTemp = this.updateTemp.bind(this);
     }
 
     appendStop(stopId) {
@@ -38,15 +38,10 @@ export default class MainPage extends React.Component {
         this.setState({ currQuery: undefined });
     }
 
-    updateTemp(response) {
-        this.setState({ temp: JSON.stringify(response.data.data) });
-        console.log(response);
-    }
-
     search(query) {
         this.setState({ currQuery: query });
         axios.get('http://localhost:8080/stops-for-route/1_100224')
-            .then(this.updateTemp)
+            .then((response) => console.log(response))
             .catch((error) => console.log(error));
     }
 
@@ -55,9 +50,8 @@ export default class MainPage extends React.Component {
         <div>
             <SearchBar searchFunction={this.search} />
             <StopHolder stopIds={this.state.stopIds} />
-            {/* <div>{this.state.temp}</div> */}
             {!!this.state.currQuery && 
-                <SearchModal input={this.state.currQuery} updater={this.appendStop} closer={this.clearModal} />
+                <SearchModal input={this.state.currQuery} updater={this.appendStop} closer={this.clearModal} stopCache={this.state.stopCache}/>
             }
         </div>
         );

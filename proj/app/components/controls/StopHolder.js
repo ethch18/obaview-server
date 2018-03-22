@@ -23,7 +23,7 @@ export default class StopHolder extends React.Component {
             views.push(currView);
             cols.push(
                 <Col 
-                    key={currId}    
+                    key={`view-${currId}`}    
                     xs={12}
                     sm={6}
                     md={4}
