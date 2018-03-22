@@ -13,6 +13,9 @@ export default class StopView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.refreshName = this.refreshName.bind(this);
+        this.refreshArrivals = this.refreshArrivals.bind(this);
+        this.conditionalRefresh = this.conditionalRefresh.bind(this);
     }
     
     componentDidMount() {
@@ -20,8 +23,15 @@ export default class StopView extends React.Component {
         this.refreshArrivals();
     }
     
+    conditionalRefresh() {
+        if (!!this.state.stopError) {
+            this.refreshName();
+        }
+        this.refreshArrivals();
+    }
+    
     refreshName() {
-        console.log(`${this.props.stopId} name refresh`);
+        this.setState({ stopName: undefined, stopError: undefined });
         axios.get(`${ENDPOINTS['BASE_URL']}${ENDPOINTS['STOP']}${this.props.stopId}`)
             .then((response) => {
                 console.log(response);
@@ -39,7 +49,7 @@ export default class StopView extends React.Component {
     }
 
     refreshArrivals() {
-        console.log(`${this.props.stopId} arr refresh`);
+        this.setState({ stopEntries: undefined, arrError: undefined });
         axios.get(`${ENDPOINTS['BASE_URL']}${ENDPOINTS['ARRIVALS_DEPARTURES']}${this.props.stopId}`)
         .then((response) => {
             console.log(response);
@@ -72,15 +82,17 @@ export default class StopView extends React.Component {
     }
 
     render() {
+        let canRefresh = true;
         let heading;
         if (this.state.stopName) {
-            heading = this.state.stopName;
+            heading = (this.state.stopName);
         }
         else if (this.state.stopError) {
             heading = "An error occurred.";
         }
         else {
             heading = "Loading...";
+            canRefresh = false;
         }
 
         let content;
@@ -101,7 +113,13 @@ export default class StopView extends React.Component {
         
         return (
             <div className="stop-wrapper">
-                <div className="stop-heading">{heading}</div>
+                <div 
+                    className={`stop-heading ${canRefresh? 'clickable' : ''}`}
+                    onClick={canRefresh ? (() => {this.conditionalRefresh()}) : () => {}}
+                >
+                    {heading}
+                    {canRefresh && <span className="fa icon fa-refresh endspan-icon" />}
+                </div>
                 <div className="stop-content">{content}</div>
             </div>
         );

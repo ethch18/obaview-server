@@ -57,8 +57,8 @@ export default class SearchDirection extends React.Component {
                 <div onClick={this.toggleShow} className="searchmodal-header clickable">
                     {this.props.heading}
                     {this.state.show ? 
-                        <span className="fa icon fa-caret-down searchmodal-caret"/> :
-                        <span className="fa icon fa-caret-right searchmodal-caret"/>
+                        <span className="fa icon fa-caret-down endspan-icon"/> :
+                        <span className="fa icon fa-caret-right endspan-icon"/>
                     }
                 </div>
                 <Collapse isOpen={this.state.show}>

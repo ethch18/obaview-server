@@ -11,6 +11,13 @@ export default class StopHolder extends React.Component {
     constructor(props) {
         super(props);
         this.views = [];
+        this.refreshAll.bind(this);
+    }
+
+    refreshAll() {
+        for (let view of this.views) {
+            view.conditionalRefresh();
+        }
     }
     
     render() {
@@ -19,8 +26,12 @@ export default class StopHolder extends React.Component {
         const views = [];
         for (let i = 0; i < stopIds.length; i++) {
             const currId = stopIds[i];
-            const currView = (<StopView stopId={currId} />);
-            views.push(currView);
+            const currView = (
+                <StopView
+                    stopId={currId}
+                    ref={(instance) => {this.views.push(instance)}}
+                 />
+            );
             cols.push(
                 <Col 
                     key={`view-${currId}`}    
@@ -33,14 +44,19 @@ export default class StopHolder extends React.Component {
                 </Col>
             )
         }
-        this.views = views;
 
         return (
-            <Container>
-                <Row>
-                    {cols}
-                </Row>
-            </Container>
+            <div>
+                <span 
+                    className="fa icon fa-refresh stop-refresh-all"
+                    onClick={() => this.refreshAll()}
+                />
+                <Container>
+                    <Row>
+                        {cols}
+                    </Row>
+                </Container>
+            </div>
         );
     }
 }
