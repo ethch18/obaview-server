@@ -17,6 +17,9 @@
 
     .stop-content {
         padding-left: 2px;
+        overflow-y: auto;
+        height: 250px;
+        max-height: 250px;
     }
 
     .stop-spinner {
