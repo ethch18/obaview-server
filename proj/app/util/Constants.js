@@ -4,3 +4,5 @@ export const ENDPOINTS = {
     STOP: "/stop/",
     ARRIVALS_DEPARTURES: "/arrivals-departures/",
 };
+
+export const COOKIE = 'obaview-stopIds';

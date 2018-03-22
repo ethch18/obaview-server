@@ -14,7 +14,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-spinner": "^0.2.7",
-    "reactstrap": "^5.0.0-beta.3"
+    "reactstrap": "^5.0.0-beta.3",
+    "universal-cookie": "^2.1.2"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2",

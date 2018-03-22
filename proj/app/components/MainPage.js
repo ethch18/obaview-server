@@ -2,18 +2,22 @@ import React from 'react';
 import SearchBar from './controls/SearchBar';
 import StopHolder from './controls/StopHolder';
 import SearchModal from './controls/SearchModal';
+import { COOKIE } from '../util/Constants'
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 export default class MainPage extends React.Component {
     constructor(props) {
         super(props);
-        const stopIds = ['1_29700', '1_29720', '1_29865', '1_75407', '1_29660'];
+        const cookies = new Cookies();
+        const stopIds = cookies.get(COOKIE) || [];
         const stopSet = new Set(stopIds);
         this.state = {
             temp: null,
             stopIds,
             stopSet,
             stopCache: {},
+            cookies,
         };
         this.search = this.search.bind(this);
         this.appendStop = this.appendStop.bind(this);
@@ -31,6 +35,7 @@ export default class MainPage extends React.Component {
             }
             
         }
+        this.state.cookies.set(COOKIE, this.state.stopIds, { path: '/' })
         this.clearModal();
     }
 
@@ -40,9 +45,6 @@ export default class MainPage extends React.Component {
 
     search(query) {
         this.setState({ currQuery: query });
-        axios.get('http://localhost:8080/stops-for-route/1_100224')
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error));
     }
 
     render() {
