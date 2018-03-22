@@ -21,6 +21,13 @@ export default class StopView extends React.Component {
     componentDidMount() {
         this.refreshName();
         this.refreshArrivals();
+
+        const timer = setInterval(this.conditionalRefresh, 120000);
+        this.setState({ timer });
+    }
+
+    componentWillUnmount() {
+        this.clearInterval(this.state.timer);
     }
     
     conditionalRefresh() {
