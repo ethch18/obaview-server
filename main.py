@@ -6,17 +6,17 @@ app = Bottle()
 
 KEY='TEST'
 
-# # hacky fix for port mangling, hopefully this won't be an issue later on
-# @app.hook('after_request')
-# def set_cors():
-#     response.headers['Access-Control-Allow-Origin'] = '*'
-#     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS' 
-#     response.headers['Access-Control-Allow-Headers'] = 'Authorization, Origin, Accept, Content-Type, X-Requested-With'
+# hacky fix for port mangling, hopefully this won't be an issue later on
+@app.hook('after_request')
+def set_cors():
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS' 
+    response.headers['Access-Control-Allow-Headers'] = 'Authorization, Origin, Accept, Content-Type, X-Requested-With'
 
-# @route('/', method = 'OPTIONS')
-# @route('/<path>', method = 'OPTIONS')
-# def options_handler(path = None):
-#     return
+@route('/', method = 'OPTIONS')
+@route('/<path>', method = 'OPTIONS')
+def options_handler(path = None):
+    return
 
 @app.route('/')
 def greet(name='Stranger'):
