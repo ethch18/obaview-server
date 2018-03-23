@@ -49,4 +49,4 @@ def route(route_id):
     return make_request(ROUTE, route_id)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(server='tornado')
