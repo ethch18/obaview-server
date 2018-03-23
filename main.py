@@ -4,7 +4,7 @@ import requests as rq
 from secret import KEY
 app = Flask(__name__)
 
-@app.route('/hello')
+@app.route('/')
 @app.route('/hello/<name>')
 def greet(name='Stranger'):
     return 'Hello {0}, how are you?'.format(name)
