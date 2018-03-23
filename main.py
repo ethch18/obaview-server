@@ -13,11 +13,6 @@ def set_cors():
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS' 
     response.headers['Access-Control-Allow-Headers'] = 'Authorization, Origin, Accept, Content-Type, X-Requested-With'
 
-@app.route('/', method = 'OPTIONS')
-@app.route('/<path>', method = 'OPTIONS')
-def options_handler(path = None):
-    return
-
 @app.route('/')
 @app.route('/hello')
 @app.route('/hello/<name>')
