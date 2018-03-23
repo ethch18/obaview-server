@@ -1,10 +1,10 @@
 from bottle import Bottle, hook, request, response, route, run, template
 from constants import *
 import requests as rq
-with open('TESTOUT.out', 'w') as file:
-    file.write("I GOT SOMEWHERE")
-from secret import KEY
+# from secret import KEY
 app = Bottle()
+
+KEY='TEST'
 
 # hacky fix for port mangling, hopefully this won't be an issue later on
 @app.hook('after_request')
