@@ -13,6 +13,7 @@ pages:
 
   script:
   - cd proj
+  - pwd
   - npm update
   - npm install -g brunch
   - npm install
@@ -20,6 +21,6 @@ pages:
   - cd ..
   artifacts:
     paths:
-    - public
+    - proj/public
   only:
   - master
