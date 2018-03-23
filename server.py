@@ -1,4 +1,5 @@
-from bottle import Bottle, hook, request, response, route, run, template
+# from bottle import Bottle, hook, request, response, route, run, template
+from bottle import Bottle, route, run
 # from constants import *
 # import requests as rq
 # from secret import KEY
@@ -22,7 +23,7 @@ KEY='TEST'
 @app.route('/hello')
 @app.route('/hello/<name>')
 def greet(name='Stranger'):
-    return template('Hello {{name}}, how are you?', name=name)
+    return 'Hello there!' 
 
 # def make_request(url, request_id):
 #     if not request_id:
