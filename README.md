@@ -1,6 +1,6 @@
 # OBA View - Server
 
-This setup uses Python 3.
+This setup uses Python 3.  Server is currently live at https://obaview.azurewebsites.net.
 
 ## Dev - Getting started
 
