@@ -16,6 +16,7 @@ def set_cors():
 def options_handler(path = None):
     return
 
+@route('/')
 @app.route('/hello')
 @app.route('/hello/<name>')
 def greet(name='Stranger'):
