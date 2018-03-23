@@ -18,6 +18,7 @@ pages:
   - npm install -g brunch
   - npm install
   - brunch build --production
+  - ls
   - cd ..
   - ls
   artifacts:
