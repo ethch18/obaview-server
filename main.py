@@ -17,10 +17,8 @@ def options_handler(path = None):
     return
 
 @app.route('/')
-@app.route('/hello')
-@app.route('/hello/<name>')
-def greet(name='Stranger'):
-    return template('Hello {{name}}, how are you?', name=name)
+def greet():
+    return 'This is the root for the OBA Mirror API.  You\'re probably in the wrong place - please visit the official OBA API site.'
 
 def make_request(url, request_id):
     if not request_id:
