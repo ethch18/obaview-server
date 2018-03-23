@@ -1,21 +1,17 @@
-# Brunch + React + Babel/ES6
+# OBA View - Client
 
-This is a modern JS skeleton with React for [Brunch](http://brunch.io).
+This setup uses [Brunch](http://brunch.io) and [React](http://facebook.github.io/react).  It is deployed [here](https://echau18.gitlab.io/obaview).
 
-## Installation
+## Dev - Getting started
 
-Clone this repo manually or use `brunch new dir -s brunch/with-react`
-
-## Getting started
-
-* Install (if you don't have them):
+* Dependencies:
     * [Node.js](http://nodejs.org): `brew install node` on OS X
     * [Brunch](http://brunch.io): `npm install -g brunch`
-    * Brunch plugins and app dependencies: `npm install`
-* Run:
-    * `npm start` — watches the project with continuous rebuild. This will also launch HTTP server with [pushState](https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history).
-    * `npm run build` — builds minified project for production
-* Learn:
-    * `public/` dir is fully auto-generated and served by HTTP server.  Write your code in `app/` dir.
-    * Place static files you want to be copied from `app/assets/` to `public/`.
-    * [Brunch site](http://brunch.io), [Getting started guide](https://github.com/brunch/brunch-guide#readme)
+    * [React](http://facebook.github.io/react): `npm install --save react react-dom`
+    * Plugins and app dependencies: `npm install`
+
+* Running:
+    * `brunch watch --server` - deploys to http://localhost:3333 with autoreload.
+    * `brunch build --production` - deploys minified code to ./public.
+
+Copyright Ethan Chau 2018 (license pending)
