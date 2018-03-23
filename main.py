@@ -1,29 +1,13 @@
-from bottle import Bottle, hook, request, response, route, run, template
+from flask import Flask
 from constants import *
 import requests as rq
 from secret import KEY
-app = Bottle()
+app = Flask(__name__)
 
-# hacky fix for port mangling, hopefully this won't be an issue later on
-@app.hook('after_request')
-def set_cors():
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS' 
-    response.headers['Access-Control-Allow-Headers'] = 'Authorization, Origin, Accept, Content-Type, X-Requested-With'
-
-@route('/', method = 'OPTIONS')
-@route('/<path>', method = 'OPTIONS')
-def options_handler(path = None):
-    return
-
-@route('/')
 @app.route('/hello')
 @app.route('/hello/<name>')
 def greet(name='Stranger'):
-    print("route")
-    print(request)
-    print(response)
-    return template('Hello {{name}}, how are you?', name=name)
+    return 'Hello {0}, how are you?'.format(name)
 
 def make_request(url, request_id):
     if not request_id:
@@ -33,17 +17,14 @@ def make_request(url, request_id):
     response = rq.get(request_url)
     return response.json()
 
-@app.route('/stops-for-route/<route_id>')
+@app.route('/stops-for-route/<route_id>', subdomain='api')
 def stops_for_route(route_id):
     return make_request(STOPS_FOR_ROUTE, route_id)
 
-@app.route('/stop/<stop_id>')
+@app.route('/stop/<stop_id>', subdomain='api')
 def stop(stop_id):
     return make_request(STOP, stop_id)
 
-@app.route('/arrivals-departures/<stop_id>')
+@app.route('/arrivals-departures/<stop_id>', subdomain='api')
 def arrivals_departures(stop_id):
     return make_request(ARR_DEP, stop_id)
-
-if __name__ == '__main__':
-    app.run()
