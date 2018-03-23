@@ -40,5 +40,13 @@ def stop(stop_id):
 def arrivals_departures(stop_id):
     return make_request(ARR_DEP, stop_id)
 
+@app.route('/routes-for-agency/<agency_id>')
+def routes_for_agency(agency_id):
+    return make_request(ROUTES_FOR_AGENCY, agency_id)
+
+@app.route('/route/<route_id>')
+def route(route_id):
+    return make_request(ROUTE, route_id)
+
 if __name__ == '__main__':
     app.run()
