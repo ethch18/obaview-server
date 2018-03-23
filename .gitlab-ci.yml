@@ -12,12 +12,15 @@ pages:
     - proj/node_modules/
 
   script:
+  - mkdir public
   - cd proj
   - pwd
   - npm update
   - npm install -g brunch
   - npm install
   - brunch build --production
+  - ls public
+  - cp -r public ../
   - ls
   - cd ..
   - ls

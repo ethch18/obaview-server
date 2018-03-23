@@ -14,7 +14,3 @@ exports.plugins = {
     }
   }
 };
-
-paths: {
-    public: '../public'
-};
