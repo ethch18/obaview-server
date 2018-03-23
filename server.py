@@ -20,8 +20,6 @@ KEY='TEST'
 #     return
 
 @app.route('/')
-@app.route('/hello')
-@app.route('/hello/<name>')
 def greet(name='Stranger'):
     return 'Hello there!' 
 
