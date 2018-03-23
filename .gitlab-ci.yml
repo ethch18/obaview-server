@@ -1,0 +1,24 @@
+# This file is a template, and might need editing before it works on your project.
+# Full project: https://gitlab.com/pages/brunch
+image: node:8.5.0
+
+before_script:
+- apt-get -qq update && apt-get -qq install -y ruby-sass
+- cd proj
+
+pages:
+  environment: prod
+  cache:
+    paths:
+    - node_modules/
+
+  script:
+  - npm update
+  - npm install -g brunch
+  - npm install
+  - brunch build --production
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
