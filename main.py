@@ -1,4 +1,4 @@
-from bottle import Bottle, template
+from bottle import Bottle, hook, route, request, response, template
 from constants import *
 import requests as rq
 # from secret import KEY
