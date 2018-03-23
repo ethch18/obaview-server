@@ -1,10 +1,8 @@
 from bottle import Bottle, response, template
 from constants import *
 import requests as rq
-# from secret import KEY
+from secret import KEY
 app = Bottle()
-
-KEY='TEST'
 
 # hacky fix for port mangling, hopefully this won't be an issue later on
 @app.hook('after_request')
@@ -22,7 +20,7 @@ def options_handler(path = None):
 @app.route('/hello')
 @app.route('/hello/<name>')
 def greet(name='Stranger'):
-    return 'Hello there!'
+    return template('Hello {{name}}, how are you?', name=name)
 
 def make_request(url, request_id):
     if not request_id:
