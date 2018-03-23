@@ -13,10 +13,12 @@ pages:
     - node_modules/
 
   script:
+  - cd proj
   - npm update
   - npm install -g brunch
   - npm install
   - brunch build --production
+  - cd ..
   artifacts:
     paths:
     - public
