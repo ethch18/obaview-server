@@ -29,5 +29,5 @@ def stop(stop_id):
 def arrivals_departures(stop_id):
     return make_request(ARR_DEP, stop_id)
 
-if __name__ == '__main__':
-  app.run()
+# if __name__ == '__main__':
+#   app.run()
