@@ -1,9 +1,9 @@
-from bottle import Bottle
-app = Bottle()
+# from bottle import Bottle
+# app = Bottle()
 
-@app.route('/')
-def hello_world():
-  return 'Hello, World!'
+# @app.route('/')
+# def hello_world():
+#   return 'Hello, World!'
 
-if __name__ == '__main__':
-  app.run()
+# if __name__ == '__main__':
+#   app.run()
