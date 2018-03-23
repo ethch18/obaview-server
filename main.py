@@ -1,5 +1,5 @@
 # # from bottle import Bottle, hook, request, response, route, run, template
-# from bottle import Bottle, route, run
+from bottle import Bottle
 # # from constants import *
 # # import requests as rq
 # # from secret import KEY
@@ -19,9 +19,9 @@
 # # def options_handler(path = None):
 # #     return
 
-# @app.route('/')
-# def greet(name='Stranger'):
-#     return 'Hello there!' 
+@app.route('/')
+def greet(name='Stranger'):
+    return 'Hello there!' 
 
 # # def make_request(url, request_id):
 # #     if not request_id:
@@ -43,5 +43,5 @@
 # # def arrivals_departures(stop_id):
 # #     return make_request(ARR_DEP, stop_id)
 
-# if __name__ == '__main__':
-#     app.run()
+if __name__ == '__main__':
+    app.run()
