@@ -3,7 +3,7 @@ from bottle import Bottle
 # # from constants import *
 # # import requests as rq
 # # from secret import KEY
-# app = Bottle()
+app = Bottle()
 
 # KEY='TEST'
 
