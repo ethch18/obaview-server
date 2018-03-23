@@ -9,7 +9,7 @@ pages:
   environment: prod
   cache:
     paths:
-    - node_modules/
+    - proj/node_modules/
 
   script:
   - cd proj
