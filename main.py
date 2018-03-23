@@ -1,6 +1,6 @@
 from bottle import Bottle, hook, request, response, route, run, template
 from constants import *
-# import requests as rq
+import requests as rq
 # from secret import KEY
 app = Bottle()
 
