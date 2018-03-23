@@ -17,14 +17,14 @@ def make_request(url, request_id):
     response = rq.get(request_url)
     return response.json()
 
-@app.route('/stops-for-route/<route_id>', subdomain='api')
+@app.route('/stops-for-route/<route_id>')
 def stops_for_route(route_id):
     return make_request(STOPS_FOR_ROUTE, route_id)
 
-@app.route('/stop/<stop_id>', subdomain='api')
+@app.route('/stop/<stop_id>')
 def stop(stop_id):
     return make_request(STOP, stop_id)
 
-@app.route('/arrivals-departures/<stop_id>', subdomain='api')
+@app.route('/arrivals-departures/<stop_id>')
 def arrivals_departures(stop_id):
     return make_request(ARR_DEP, stop_id)
