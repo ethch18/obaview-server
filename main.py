@@ -7,7 +7,7 @@ app = Bottle()
 # hacky fix for port mangling, hopefully this won't be an issue later on
 @app.hook('after_request')
 def set_cors():
-    response.headers['Access-Control-Allow-Origin'] =  'https://echau18.gitlab.io, http://127.0.0.1'
+    response.headers['Access-Control-Allow-Origin'] =  'https://echau18.gitlab.io'
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS' 
     response.headers['Access-Control-Allow-Headers'] = 'Authorization, Origin, Accept, Content-Type, X-Requested-With'
 
