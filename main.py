@@ -1,13 +1,21 @@
 from bottle import Bottle, response, template
 from constants import *
 import requests as rq
+import sys
 from secret import KEY
+
+DEBUG = False
+
 app = Bottle()
 
 # hacky fix for port mangling, hopefully this won't be an issue later on
 @app.hook('after_request')
 def set_cors():
-    response.headers['Access-Control-Allow-Origin'] =  'https://echau18.gitlab.io'
+    if DEBUG:
+        print('Running in DEBUG mode, all origins allowed')
+        response.headers['Access-Control-Allow-Origin'] = '*'
+    else:
+        response.headers['Access-Control-Allow-Origin'] =  'https://echau18.gitlab.io'
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS' 
     response.headers['Access-Control-Allow-Headers'] = 'Authorization, Origin, Accept, Content-Type, X-Requested-With'
 
@@ -49,4 +57,6 @@ def route(route_id):
     return make_request(ROUTE, route_id)
 
 if __name__ == '__main__':
+    if len(sys.argv) >= 2 and sys.argv[1].lower() == 'debug':
+        DEBUG = True
     app.run(server='tornado')
