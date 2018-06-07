@@ -61,5 +61,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     DEBUG = args.debug
+    with open('./test.txt', 'w') as f:
+        f.write(str(args.debug))
 
     app.run(server='tornado')
