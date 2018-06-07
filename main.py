@@ -6,8 +6,6 @@ from secret import KEY
 
 app = Bottle()
 
-DEBUG = False
-
 # hacky fix for port mangling, hopefully this won't be an issue later on
 @app.hook('after_request')
 def set_cors():
