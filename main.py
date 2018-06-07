@@ -57,9 +57,9 @@ def route(route_id):
     return make_request(ROUTE, route_id)
 
 if __name__ == '__main__':
-    # parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    # parser.add_argument('--debug', action='store_true', default=False, help='Run server in debug mode (all origins allowed)')
-    # args = parser.parse_args()
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--debug', action='store_true', default=False, help='Run server in debug mode (all origins allowed)')
+    args = parser.parse_args()
 
     # DEBUG = args.debug
 
