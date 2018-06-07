@@ -7,4 +7,3 @@ ROUTES_FOR_AGENCY = 'http://api.pugetsound.onebusaway.org/api/where/route-ids-fo
 ARR_DEP_PARAMS = {
     'minutesBefore': -1
 }
-
