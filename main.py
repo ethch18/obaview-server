@@ -9,11 +9,12 @@ app = Bottle()
 # hacky fix for port mangling, hopefully this won't be an issue later on
 @app.hook('after_request')
 def set_cors():
-    if DEBUG:
-        print('Running in DEBUG mode, all origins allowed')
-        response.headers['Access-Control-Allow-Origin'] = '*'
-    else:
-        response.headers['Access-Control-Allow-Origin'] =  'https://echau18.gitlab.io'
+    # if DEBUG:
+    #     print('Running in DEBUG mode, all origins allowed')
+    #     response.headers['Access-Control-Allow-Origin'] = '*'
+    # else:
+    #     response.headers['Access-Control-Allow-Origin'] =  'https://echau18.gitlab.io'
+    response.headers['Access-Control-Allow-Origin'] =  'https://echau18.gitlab.io'
     response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS' 
     response.headers['Access-Control-Allow-Headers'] = 'Authorization, Origin, Accept, Content-Type, X-Requested-With'
 
@@ -56,10 +57,10 @@ def route(route_id):
     return make_request(ROUTE, route_id)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--debug', action='store_true', default=False, help='Run server in debug mode (all origins allowed)')
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    # parser.add_argument('--debug', action='store_true', default=False, help='Run server in debug mode (all origins allowed)')
+    # args = parser.parse_args()
 
-    DEBUG = args.debug
+    # DEBUG = args.debug
 
     app.run(server='tornado')
