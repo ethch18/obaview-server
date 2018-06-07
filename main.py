@@ -1,10 +1,8 @@
 from bottle import Bottle, response, template
 from constants import *
 import requests as rq
-import sys
+import argparse
 from secret import KEY
-
-DEBUG = False
 
 app = Bottle()
 
@@ -28,10 +26,11 @@ def options_handler(path = None):
 def greet():
     return 'This is the root for the OBA Mirror API.  You\'re probably in the wrong place - please visit the official OBA API site.'
 
-def make_request(url, request_id):
+def make_request(url, request_id, params={}):
     if not request_id:
         return 'BUT IT FAILED!'
     request_url = '{0}{1}.json?key={2}'.format(url, request_id, KEY)
+    request_url += ''.join(['&{0}={1}'.format(key, value) for key, value in params.items()])
     print(request_url)
     response = rq.get(request_url)
     return response.json()
@@ -46,7 +45,7 @@ def stop(stop_id):
 
 @app.route('/arrivals-departures/<stop_id>')
 def arrivals_departures(stop_id):
-    return make_request(ARR_DEP, stop_id)
+    return make_request(ARR_DEP, stop_id, ARR_DEP_PARAMS)
 
 @app.route('/routes-for-agency/<agency_id>')
 def routes_for_agency(agency_id):
@@ -57,6 +56,10 @@ def route(route_id):
     return make_request(ROUTE, route_id)
 
 if __name__ == '__main__':
-    if len(sys.argv) >= 2 and sys.argv[1].lower() == 'debug':
-        DEBUG = True
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--debug', action='store_true', default=False, help='Run server in debug mode (all origins allowed)')
+    args = parser.parse_args()
+
+    DEBUG = args.debug
+
     app.run(server='tornado')

@@ -4,3 +4,7 @@ ARR_DEP = 'http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departure
 ROUTE = 'http://api.pugetsound.onebusaway.org/api/where/route/'
 ROUTES_FOR_AGENCY = 'http://api.pugetsound.onebusaway.org/api/where/route-ids-for-agency/'
 
+ARR_DEP_PARAMS = {
+    'minutesBefore': -1
+}
+
