@@ -63,6 +63,6 @@ if __name__ == '__main__':
     parser.add_argument('--debug', action='store_true', default=False, help='Run server in debug mode (all origins allowed)')
     args = parser.parse_args()
 
-    # DEBUG = args.debug
+    DEBUG = args.debug
 
     app.run(server='tornado')
