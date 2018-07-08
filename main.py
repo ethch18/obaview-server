@@ -32,7 +32,7 @@ def greet():
 def make_request(url, request_id, params={}):
     if not request_id:
         return 'BUT IT FAILED!'
-    request_url = '{0}{1}.json?key={2}'.format(url, request_id, KEY)
+    request_url = '{0}{1}{2}.json?key={3}'.format(ENDPOINTS['BASE'], url, request_id, KEY)
     request_url += ''.join(['&{0}={1}'.format(key, value) for key, value in params.items()])
     print(request_url)
     response = rq.get(request_url)
@@ -40,23 +40,43 @@ def make_request(url, request_id, params={}):
 
 @app.route('/stops-for-route/<route_id>')
 def stops_for_route(route_id):
-    return make_request(STOPS_FOR_ROUTE, route_id)
+    return make_request(ENDPOINTS['STOPS_FOR_ROUTE'], route_id)
 
 @app.route('/stop/<stop_id>')
 def stop(stop_id):
-    return make_request(STOP, stop_id)
+    return make_request(ENDPOINTS['STOP'], stop_id)
 
 @app.route('/arrivals-departures/<stop_id>')
 def arrivals_departures(stop_id):
-    return make_request(ARR_DEP, stop_id, ARR_DEP_PARAMS)
+    return make_request(ENDPOINTS['ARR_DEP'], stop_id, ARR_DEP_PARAMS)
 
 @app.route('/routes-for-agency/<agency_id>')
 def routes_for_agency(agency_id):
-    return make_request(ROUTES_FOR_AGENCY, agency_id)
+    return make_request(ENDPOINTS['ROUTES_FOR_AGENCY'], agency_id)
 
 @app.route('/route/<route_id>')
 def route(route_id):
-    return make_request(ROUTE, route_id)
+    return make_request(ENDPOINTS['ROUTE'], route_id)
+
+@app.route('/routes-for-location/<search_query>')
+def routes_for_location(search_query):
+    params = ROUTES_FOR_LOCATION_BASE_PARAMS.copy()
+    params['query'] = search_query
+    return make_request(ENDPOINTS['ROUTES_FOR_LOCATION'], 'routes-for-location', params)
+
+@app.route('/search/<search_query>')
+def search(search_query):
+    shortname_results = routes_for_location(search_query)
+    if shortname_results['data']['list']:
+        print('Search successfully routed through routes-for-location/')
+        route_data = []
+        for route_obj in shortname_results['data']['list']:
+            search_id = route_obj['id']
+            route_data.append(stops_for_route(search_id))
+    else:
+        print('Fallback to stops-for-route/')
+        route_data = [stops_for_route(search_query)]
+    return {'data': route_data}
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)

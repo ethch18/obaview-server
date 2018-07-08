@@ -1,9 +1,20 @@
-STOPS_FOR_ROUTE = 'http://api.pugetsound.onebusaway.org/api/where/stops-for-route/'
-STOP = 'http://api.pugetsound.onebusaway.org/api/where/stop/'
-ARR_DEP = 'http://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/'
-ROUTE = 'http://api.pugetsound.onebusaway.org/api/where/route/'
-ROUTES_FOR_AGENCY = 'http://api.pugetsound.onebusaway.org/api/where/route-ids-for-agency/'
+ENDPOINTS = {
+    'BASE': 'http://api.pugetsound.onebusaway.org/api/where/',
+    'ARR_DEP': 'arrivals-and-departures-for-stop/',
+    'ROUTE': 'route/',
+    'ROUTES_FOR_AGENCY': 'route-ids-for-agency/',
+    'ROUTES_FOR_LOCATION': '',
+    'STOP': 'stop/',
+    'STOPS_FOR_ROUTE': 'stops-for-route/' 
+}
 
 ARR_DEP_PARAMS = {
     'minutesBefore': -1
 }
+
+ROUTES_FOR_LOCATION_BASE_PARAMS = {
+    'lat': 47.609722,
+    'lon': -122.333056,
+    'radius': 60000
+}
+
