@@ -1,7 +1,9 @@
+import argparse
+
+import requests as rq
+
 from bottle import Bottle, response, template
 from constants import *
-import requests as rq
-import argparse
 from secret import KEY
 
 app = Bottle()
@@ -17,7 +19,7 @@ def set_cors():
         response.headers['Access-Control-Allow-Origin'] = '*'
     else:
         response.headers['Access-Control-Allow-Origin'] =  'https://echau18.gitlab.io'
-    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS' 
+    response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, POST, DELETE, OPTIONS'
     response.headers['Access-Control-Allow-Headers'] = 'Authorization, Origin, Accept, Content-Type, X-Requested-With'
 
 @app.route('/', method = 'OPTIONS')
@@ -27,7 +29,7 @@ def options_handler(path = None):
 
 @app.route('/')
 def greet():
-    return 'This is the root for the OBA Mirror API.  You\'re probably in the wrong place - please visit the official OBA API site.'
+    return 'This is the root for the OBA Mirror API.  You\'re probably in the wrong place - please visit the <a href="http://developer.onebusaway.org/modules/onebusaway-application-modules/current/index.html">official OBA API site</a>.'
 
 def make_request(url, request_id, params={}):
     if not request_id:
