@@ -37,8 +37,8 @@ def make_request(url, request_id, params={}):
     request_url = '{0}{1}{2}.json?key={3}'.format(ENDPOINTS['BASE'], url, request_id, KEY)
     request_url += ''.join(['&{0}={1}'.format(key, value) for key, value in params.items()])
     print(request_url)
-    response = rq.get(request_url)
-    return response.json()
+    resp = rq.get(request_url)
+    return resp.json()
 
 @app.route('/stops-for-route/<route_id>')
 def stops_for_route(route_id):
@@ -77,7 +77,11 @@ def search(search_query):
             route_data.append(stops_for_route(search_id))
     else:
         print('Fallback to stops-for-route/')
-        route_data = [stops_for_route(search_query)]
+        try:
+            route_data = [stops_for_route(search_query)]
+        except:
+            response.status = 400
+            return {}
     return {'data': route_data}
 
 if __name__ == '__main__':
