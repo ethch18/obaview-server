@@ -97,4 +97,4 @@ if __name__ == '__main__':
     DEBUG = args.debug or False
     print('Debug? {0}'.format(DEBUG))
 
-    app.run(server='tornado')
+    app.run(server='tornado', port=8000)
