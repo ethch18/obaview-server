@@ -1,6 +1,6 @@
 # OBA View - Server
 
-This setup uses Python 3.  Server is currently live at https://obaview2.azurewebsites.net.  Client code lives at https://gitlab.com/echau18/obaview.
+This setup uses Python 3.  Server is currently live at ~https://obaview2.azurewebsites.net~ ~https://obaview2.azurewebsites.net~ https://obaview.herokuapp.com.  Client code lives at https://gitlab.com/echau18/obaview.
 
 ## Dev - Getting started
 
