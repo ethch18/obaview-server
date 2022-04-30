@@ -97,4 +97,5 @@ if __name__ == '__main__':
     DEBUG = args.debug or False
     print('Debug? {0}'.format(DEBUG))
 
+    print(os.environ.get("PORT", None))
     app.run(server='tornado', port=int(os.environ.get("PORT", 8080)))
