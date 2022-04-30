@@ -1,10 +1,15 @@
 import argparse
+import os
 
 import requests as rq
 
 from bottle import Bottle, response, template
 from constants import *
-from secret import KEY
+
+if os.path.exists("./secret.py"):
+    from secret import KEY
+else:
+    KEY = os.environ["SECRET"]
 
 app = Bottle()
 
